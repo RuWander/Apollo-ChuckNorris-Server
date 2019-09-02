@@ -1,7 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 
-const { getCategories } = require('./controllers');
-const ChuckNorrisAPI = require('./data-sources/ChuckNorrisAPI')
+const ChuckNorrisAPI = require('./data-sources/ChuckNorrisAPI');
 
 
 const typeDefs = gql`
@@ -28,18 +27,18 @@ type LoginPayload {
 
 type Query {
   categories: [String]
-  getCategories: [String]
+  quoteForCategory(category: String): Quote
 }
 
 `;
 
 const resolvers = {
   Query: {
-    categories: (_, args, context) => {
-      return getCategories();
-    },
-    getCategories: async (_source, {}, { dataSources }) => {
+    categories: async (_source, {}, { dataSources }) => {
       return dataSources.chuckNorrisAPI.getCategories()
+    },
+    quoteForCategory: async (_source, { category }, { dataSources }) => {
+      return dataSources.chuckNorrisAPI.getQuoteForCategory(category)
     }
  
   }

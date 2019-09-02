@@ -9,6 +9,10 @@ class ChuckNorrisAPI extends RESTDataSource {
   async getCategories() {
     return this.get('categories');
   }
+
+  async getQuoteForCategory(category) {
+    return this.get(`https://api.chucknorris.io/jokes/random?category=${category}`)
+  }
 }
 
 module.exports = ChuckNorrisAPI
