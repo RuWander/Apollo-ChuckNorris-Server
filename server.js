@@ -29,6 +29,7 @@ type Query {
   categories: [String]
   quoteForCategory(category: String): Quote
   randomQuote: Quote
+  searchQuote(search: String): [Quote]
 }
 
 `;
@@ -36,13 +37,16 @@ type Query {
 const resolvers = {
   Query: {
     categories: async (_source, {}, { dataSources }) => {
-      return dataSources.chuckNorrisAPI.getCategories()
+      return dataSources.chuckNorrisAPI.getCategories();
     },
     quoteForCategory: async (_source, { category }, { dataSources }) => {
-      return dataSources.chuckNorrisAPI.getQuoteForCategory(category)
+      return dataSources.chuckNorrisAPI.getQuoteForCategory(category);
     },
     randomQuote: async (_source, {}, {dataSources}) => {
-      return dataSources.chuckNorrisAPI.getRandomQuote()
+      return dataSources.chuckNorrisAPI.getRandomQuote();
+    },
+    searchQuote: async (_source, {search}, {dataSources}) => {
+      return dataSources.chuckNorrisAPI.getQuotesBySearch(search);
     }
  
   }

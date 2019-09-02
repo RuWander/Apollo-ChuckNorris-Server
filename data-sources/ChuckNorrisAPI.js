@@ -17,6 +17,11 @@ class ChuckNorrisAPI extends RESTDataSource {
   async getRandomQuote() {
     return this.get('random')
   }
+  
+  async getQuotesBySearch(search) {
+    const data = await this.get(`search?query=${search}`)
+    return data.result
+  }
 }
 
 module.exports = ChuckNorrisAPI
