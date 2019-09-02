@@ -11,7 +11,11 @@ class ChuckNorrisAPI extends RESTDataSource {
   }
 
   async getQuoteForCategory(category) {
-    return this.get(`https://api.chucknorris.io/jokes/random?category=${category}`)
+    return this.get(`random?category=${category}`)
+  }
+
+  async getRandomQuote() {
+    return this.get('random')
   }
 }
 

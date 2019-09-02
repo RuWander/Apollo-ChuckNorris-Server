@@ -28,6 +28,7 @@ type LoginPayload {
 type Query {
   categories: [String]
   quoteForCategory(category: String): Quote
+  randomQuote: Quote
 }
 
 `;
@@ -39,6 +40,9 @@ const resolvers = {
     },
     quoteForCategory: async (_source, { category }, { dataSources }) => {
       return dataSources.chuckNorrisAPI.getQuoteForCategory(category)
+    },
+    randomQuote: async (_source, {}, {dataSources}) => {
+      return dataSources.chuckNorrisAPI.getRandomQuote()
     }
  
   }
