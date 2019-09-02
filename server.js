@@ -60,11 +60,11 @@ const resolvers = {
   },
 
   Mutation: {
-    register: async (_source, {username, email, password}, {dataSources}) => {
-      return {user: dataSources.userAPI.addUser(username, email, password)};
+    register: async (_source, user, {dataSources}) => {
+      return dataSources.userAPI.hashPasswordAndRegisterUser(user);
     },
     login: async (_source, {email, password}, {dataSources}) => {
-      return {user: dataSources.userAPI.getUserByEmail(email)}
+      return dataSources.userAPI.authenticateUser(email, password)
     }
   }
 };
