@@ -1,7 +1,7 @@
 // Use this to deploy to AWS
-const { ApolloServer, gql } = require('apollo-server-lambda');
+// const { ApolloServer, gql } = require('apollo-server-lambda');
 // Instead of this
-// const { ApolloServer, gql } = require('apollo-server');
+const { ApolloServer, gql } = require('apollo-server');
 
 const ChuckNorrisAPI = require('./data-sources/ChuckNorrisAPI');
 
@@ -66,14 +66,14 @@ const server = new ApolloServer({
 });
 
 // Use  this line to deploy to AWS with Serverless
-exports.graphqlHandler = server.createHandler({
-  cors:{
-    origin: '*',
-    credentials: true
-  }
-});
+// exports.graphqlHandler = server.createHandler({
+//   cors:{
+//     origin: '*',
+//     credentials: true
+//   }
+// });
 
 // Uncomment this to run project locally
-// server.listen().then(({ url }) => {
-//   console.log(`🚀  Server ready at ${url}`);
-// });
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});
