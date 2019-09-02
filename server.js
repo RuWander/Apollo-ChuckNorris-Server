@@ -4,6 +4,7 @@
 const { ApolloServer, gql } = require('apollo-server');
 
 const ChuckNorrisAPI = require('./data-sources/ChuckNorrisAPI');
+const UserAPI = require('./data-sources/UserAPI');
 
 
 const typeDefs = gql`
@@ -35,6 +36,11 @@ type Query {
   searchQuote(search: String): [Quote]
 }
 
+type Mutation {
+  register(username: String, email: String, password: String): LoginPayload
+  login(email: String, password: String): LoginPayload 
+}
+
 `;
 
 const resolvers = {
@@ -51,7 +57,15 @@ const resolvers = {
     searchQuote: async (_source, { search }, { dataSources }) => {
       return dataSources.chuckNorrisAPI.getQuotesBySearch(search);
     }
+  },
 
+  Mutation: {
+    register: async (_source, {username, email, password}, {dataSources}) => {
+      return {user: dataSources.userAPI.addUser(username, email, password)};
+    },
+    login: async (_source, {email, password}, {dataSources}) => {
+      return {user: dataSources.userAPI.getUserByEmail(email)}
+    }
   }
 };
 
@@ -60,7 +74,8 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => {
     return {
-      chuckNorrisAPI: new ChuckNorrisAPI()
+      chuckNorrisAPI: new ChuckNorrisAPI(),
+      userAPI: new UserAPI()
     }
   }
 });
