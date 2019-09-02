@@ -1,6 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server');
 
-const { getCategories } = require('./controllers')
+const { getCategories } = require('./controllers');
+const ChuckNorrisAPI = require('./data-sources/ChuckNorrisAPI')
 
 
 const typeDefs = gql`
@@ -27,6 +28,7 @@ type LoginPayload {
 
 type Query {
   categories: [String]
+  getCategories: [String]
 }
 
 `;
@@ -36,11 +38,22 @@ const resolvers = {
     categories: (_, args, context) => {
       return getCategories();
     },
+    getCategories: async (_source, {}, { dataSources }) => {
+      return dataSources.chuckNorrisAPI.getCategories()
+    }
  
   }
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ 
+  typeDefs,
+  resolvers,
+  dataSources: () => {
+    return {
+      chuckNorrisAPI: new ChuckNorrisAPI()
+    }
+  }
+ });
 
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
