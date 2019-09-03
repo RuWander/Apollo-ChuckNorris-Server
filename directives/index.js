@@ -9,7 +9,7 @@ class AuthDirective extends SchemaDirectiveVisitor {
 
     field.resolve = function (...args) {
       const [, , context] = args
-      console.log(context.token)
+      // console.log(context.token)
 
       if (!context.token) {
         throw new AuthorizationError({
@@ -29,10 +29,6 @@ class AuthDirective extends SchemaDirectiveVisitor {
       }
 
     }
-  }
-
-  visitObject() {
-
   }
 
 }

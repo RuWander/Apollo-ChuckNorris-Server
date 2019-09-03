@@ -12,11 +12,11 @@ const { AuthDirective } = require('./directives')
 
 const typeDefs = gql`
 
-directive @auth on OBJECT | FIELD_DEFINITION
+directive @auth on FIELD_DEFINITION
 
 type Quote {
-  id: ID!
-  value: String!
+  id: ID! 
+  value: String! 
   url: String!
   icon_url: String!
   created_at: String!
@@ -37,9 +37,9 @@ type LoginPayload {
 
 type Query {
   categories: [String] @auth
-  quoteForCategory(category: String): Quote
-  randomQuote: Quote
-  searchQuote(search: String): [Quote]
+  quoteForCategory(category: String): Quote @auth
+  randomQuote: Quote @auth
+  searchQuote(search: String): [Quote] @auth
 }
 
 type Mutation {
