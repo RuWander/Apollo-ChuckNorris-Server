@@ -5,6 +5,11 @@
       "email": "tester@mail.com",
       "password": "$2b$10$Tq2E41W/XznAxwRWWAXqCeevF73UojW/2zWqchwDQ/tZrlc/v8Xou",
       "id": 1
+    },
+    {
+      "email": "tester2@mail.com",
+      "password": "$2b$10$9ICu/mWMDet0RA4/SOrBF.rKhbi7a2304HGabR7Jeco.LI0tqZt/m",
+      "id": 2
     }
   ]
 }

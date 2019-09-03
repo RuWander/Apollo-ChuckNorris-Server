@@ -3,11 +3,17 @@
 // Instead of this
 const { ApolloServer, gql } = require('apollo-server');
 
+require('dotenv').config()
 const ChuckNorrisAPI = require('./data-sources/ChuckNorrisAPI');
 const UserAPI = require('./data-sources/UserAPI');
 
+const { AuthDirective } = require('./directives')
+
 
 const typeDefs = gql`
+
+directive @auth on OBJECT | FIELD_DEFINITION
+
 type Quote {
   id: ID!
   value: String!
@@ -30,7 +36,7 @@ type LoginPayload {
 }
 
 type Query {
-  categories: [String]
+  categories: [String] @auth
   quoteForCategory(category: String): Quote
   randomQuote: Quote
   searchQuote(search: String): [Quote]
@@ -44,6 +50,7 @@ type Mutation {
 `;
 
 const resolvers = {
+  
   Query: {
     categories: async (_source, { }, { dataSources }) => {
       return dataSources.chuckNorrisAPI.getCategories();
@@ -72,11 +79,18 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  schemaDirectives: {
+    auth: AuthDirective
+  },
   dataSources: () => {
     return {
       chuckNorrisAPI: new ChuckNorrisAPI(),
       userAPI: new UserAPI()
     }
+  },
+  context: ({req}) => {
+    const token = req.headers.authorization
+    return { token } 
   }
 });
 

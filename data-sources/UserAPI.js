@@ -1,3 +1,4 @@
+
 const { RESTDataSource } = require('apollo-datasource-rest');
 const { AuthorizationError } = require('../errors');
 const jwt = require('jsonwebtoken');
@@ -51,6 +52,7 @@ class UserAPI extends RESTDataSource {
         }
         const validPassword = bcrypt.compareSync(password, existingUser.password)
         if (validPassword) {
+          console.log(process.env.JWT_SECRET)
           const token = jwt.sign(existingUser.password, process.env.JWT_SECRET);
           delete existingUser.password
           return {
