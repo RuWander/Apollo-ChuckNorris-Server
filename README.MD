@@ -20,7 +20,6 @@ JWT_SECRET=ASuperStrongSecret
 
 **Start the server with:**
 
-_It is important to start the server first if you are viewing this in [CodeSandbox](https://codesandbox.io). If you want the main veiw to map to the port of the server and not the port of the json-server that hosts the test database._
 
 ```javascript
 npm run server
@@ -35,4 +34,14 @@ npm run db
 ```
 
 The database is just a json-server that watches the db.json folder. It exposes REST endpoint to query the data.
+
+____
+
+## CodeSandbox instructions
+
+_It is important to start the server first if you are viewing this in [CodeSandbox](https://codesandbox.io). If you want the main veiw to map to the port of the server and not the port of the json-server that hosts the test database. You can optionally navigate to the Server Control Panel and click on the server running on port 4000_
+
+**Navigate to Server Control Panel**
+
+![](http://ruwander/github.com/images/codeSandbox_server.PNG)
 
