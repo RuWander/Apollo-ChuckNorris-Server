@@ -1,6 +1,6 @@
 # APOLLO GraphQL Server
 
-This is a simple GraphQl server that wraps the Chuck Norris jokes REST API. All of the Chuck Norris API endpoint can be queries through this GraphQL server.
+This is a simple GraphQl server that wraps the Chuck Norris jokes REST API ([chucknorris.io](https://api.chucknorris.io/)). All of the Chuck Norris API endpoint can be queries through this GraphQL server.
 
 This server also has basic authentication with JWT built in with custom directives that can be used to protect on the field level as well as on the query level.
 
@@ -20,7 +20,7 @@ JWT_SECRET=ASuperStrongSecret
 
 **Start the server with:**
 
-_It is important to start the server first if you are viewing this in [CodeSandbox](https://codesandbox.io)._
+_It is important to start the server first if you are viewing this in [CodeSandbox](https://codesandbox.io). If you want the main veiw to map to the port of the server and not the port of the json-server that hosts the test database._
 
 ```javascript
 npm run server
