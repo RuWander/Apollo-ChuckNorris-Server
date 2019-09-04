@@ -1,7 +1,3 @@
-![](https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/216/square_256/apollo-seeklogo.com_%281%29.png width="100")
-![alt text](https://cdn.jsdelivr.net/npm/graphql-playground-react/build/logo.png width="100")
-![alt text](https://api.chucknorris.io/img/chucknorris_logo_coloured_small@2x.png width="100")
-
 # APOLLO GraphQL Server
 
 This is a simple GraphQl server that wraps the Chuck Norris jokes REST API. All of the Chuck Norris API endpoint can be queries through this GraphQL server.
