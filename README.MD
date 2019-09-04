@@ -43,5 +43,6 @@ _It is important to start the server first if you are viewing this in [CodeSandb
 
 **Navigate to Server Control Panel**
 
-![](http://ruwander/github.com/images/codeSandbox_server.PNG)
+Click `yarn server` and `yarn db` to start both servers
 
+![codeSandbox_navigation](images/codeSandbox_server.PNG)
