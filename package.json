@@ -14,7 +14,7 @@
     "apollo-datasource-rest": "^0.6.4",
     "apollo-errors": "^1.9.0",
     "apollo-server": "^2.9.3",
-    "apollo-server-lambda": "^2.9.3",
+    "apollo-server-lambda": "^2.14.2",
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "dotenv": "^8.1.0",
